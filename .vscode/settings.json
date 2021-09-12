@@ -1,0 +1,13 @@
+{
+    "dart.flutterSdkPaths": [
+        "${fileWorkspaceFolder}/.fvm/flutter_sdk"
+    ],
+    // Remove .fvm files from search
+    "search.exclude": {
+        "**/.fvm": true
+    },
+    // Remove froam file watching
+    "files.watcherExclude": {
+        "**/.fvm": true
+    }
+}
