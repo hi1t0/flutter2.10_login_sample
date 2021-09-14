@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
@@ -16,5 +17,22 @@ void main() async {
   // Run the app and pass in the SettingsController. The app listens to the
   // SettingsController for changes, then passes it further down to the
   // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
+  runApp(ProviderScope(
+      observers: [Logger()],
+      child: MyApp(settingsController: settingsController)));
+}
+
+// logger for riverpod
+class Logger extends ProviderObserver {
+  @override
+  void didUpdateProvider(
+    ProviderBase provider,
+    Object? newValue,
+  ) {
+    print('''
+      {
+        "provider": "${provider.name ?? provider.runtimeType}",
+        "newValue": "$newValue"
+      }''');
+  }
 }
