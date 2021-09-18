@@ -21,10 +21,16 @@ AuthState _$AuthStateFromJson(Map<String, dynamic> json) {
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
-  _AuthState call({String? password, String? email}) {
+  _AuthState call(
+      {String? loginPassword,
+      String? loginEmail,
+      String? signupPassword,
+      String? signupEmail}) {
     return _AuthState(
-      password: password,
-      email: email,
+      loginPassword: loginPassword,
+      loginEmail: loginEmail,
+      signupPassword: signupPassword,
+      signupEmail: signupEmail,
     );
   }
 
@@ -38,8 +44,10 @@ const $AuthState = _$AuthStateTearOff();
 
 /// @nodoc
 mixin _$AuthState {
-  String? get password => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
+  String? get loginPassword => throw _privateConstructorUsedError;
+  String? get loginEmail => throw _privateConstructorUsedError;
+  String? get signupPassword => throw _privateConstructorUsedError;
+  String? get signupEmail => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +59,11 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
-  $Res call({String? password, String? email});
+  $Res call(
+      {String? loginPassword,
+      String? loginEmail,
+      String? signupPassword,
+      String? signupEmail});
 }
 
 /// @nodoc
@@ -64,17 +76,27 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? password = freezed,
-    Object? email = freezed,
+    Object? loginPassword = freezed,
+    Object? loginEmail = freezed,
+    Object? signupPassword = freezed,
+    Object? signupEmail = freezed,
   }) {
     return _then(_value.copyWith(
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
+      loginPassword: loginPassword == freezed
+          ? _value.loginPassword
+          : loginPassword // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      loginEmail: loginEmail == freezed
+          ? _value.loginEmail
+          : loginEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signupPassword: signupPassword == freezed
+          ? _value.signupPassword
+          : signupPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signupEmail: signupEmail == freezed
+          ? _value.signupEmail
+          : signupEmail // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -86,7 +108,11 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
           _AuthState value, $Res Function(_AuthState) then) =
       __$AuthStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? password, String? email});
+  $Res call(
+      {String? loginPassword,
+      String? loginEmail,
+      String? signupPassword,
+      String? signupEmail});
 }
 
 /// @nodoc
@@ -100,17 +126,27 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? password = freezed,
-    Object? email = freezed,
+    Object? loginPassword = freezed,
+    Object? loginEmail = freezed,
+    Object? signupPassword = freezed,
+    Object? signupEmail = freezed,
   }) {
     return _then(_AuthState(
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
+      loginPassword: loginPassword == freezed
+          ? _value.loginPassword
+          : loginPassword // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      loginEmail: loginEmail == freezed
+          ? _value.loginEmail
+          : loginEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signupPassword: signupPassword == freezed
+          ? _value.signupPassword
+          : signupPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signupEmail: signupEmail == freezed
+          ? _value.signupEmail
+          : signupEmail // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -119,37 +155,54 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AuthState implements _AuthState {
-  const _$_AuthState({this.password, this.email});
+  const _$_AuthState(
+      {this.loginPassword,
+      this.loginEmail,
+      this.signupPassword,
+      this.signupEmail});
 
   factory _$_AuthState.fromJson(Map<String, dynamic> json) =>
       _$$_AuthStateFromJson(json);
 
   @override
-  final String? password;
+  final String? loginPassword;
   @override
-  final String? email;
+  final String? loginEmail;
+  @override
+  final String? signupPassword;
+  @override
+  final String? signupEmail;
 
   @override
   String toString() {
-    return 'AuthState(password: $password, email: $email)';
+    return 'AuthState(loginPassword: $loginPassword, loginEmail: $loginEmail, signupPassword: $signupPassword, signupEmail: $signupEmail)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AuthState &&
-            (identical(other.password, password) ||
+            (identical(other.loginPassword, loginPassword) ||
                 const DeepCollectionEquality()
-                    .equals(other.password, password)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+                    .equals(other.loginPassword, loginPassword)) &&
+            (identical(other.loginEmail, loginEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.loginEmail, loginEmail)) &&
+            (identical(other.signupPassword, signupPassword) ||
+                const DeepCollectionEquality()
+                    .equals(other.signupPassword, signupPassword)) &&
+            (identical(other.signupEmail, signupEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.signupEmail, signupEmail)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(password) ^
-      const DeepCollectionEquality().hash(email);
+      const DeepCollectionEquality().hash(loginPassword) ^
+      const DeepCollectionEquality().hash(loginEmail) ^
+      const DeepCollectionEquality().hash(signupPassword) ^
+      const DeepCollectionEquality().hash(signupEmail);
 
   @JsonKey(ignore: true)
   @override
@@ -163,15 +216,23 @@ class _$_AuthState implements _AuthState {
 }
 
 abstract class _AuthState implements AuthState {
-  const factory _AuthState({String? password, String? email}) = _$_AuthState;
+  const factory _AuthState(
+      {String? loginPassword,
+      String? loginEmail,
+      String? signupPassword,
+      String? signupEmail}) = _$_AuthState;
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
       _$_AuthState.fromJson;
 
   @override
-  String? get password => throw _privateConstructorUsedError;
+  String? get loginPassword => throw _privateConstructorUsedError;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get loginEmail => throw _privateConstructorUsedError;
+  @override
+  String? get signupPassword => throw _privateConstructorUsedError;
+  @override
+  String? get signupEmail => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

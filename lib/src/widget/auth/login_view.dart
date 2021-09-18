@@ -17,8 +17,10 @@ part 'login_view.g.dart';
 @freezed
 abstract class AuthState with _$AuthState {
   const factory AuthState({
-    String? password,
-    String? email,
+    String? loginPassword,
+    String? loginEmail,
+    String? signupPassword,
+    String? signupEmail,
   }) = _AuthState;
   factory AuthState.fromJson(Map<String, dynamic> json) =>
       _$AuthStateFromJson(json);
@@ -52,12 +54,20 @@ class AuthStateController extends StateNotifier<AuthState> {
     await ref.read(authProvider).signOut();
   }
 
-  setMailText(text) {
-    state = state.copyWith(email: text);
+  setLoginEmailText(text) {
+    state = state.copyWith(loginEmail: text);
   }
 
-  setPasswordText(text) {
-    state = state.copyWith(password: text);
+  setLoginPasswordText(text) {
+    state = state.copyWith(loginPassword: text);
+  }
+
+  setSignupEmailText(text) {
+    state = state.copyWith(signupEmail: text);
+  }
+
+  setSignupPasswordText(text) {
+    state = state.copyWith(signupPassword: text);
   }
 }
 
@@ -76,9 +86,10 @@ class LogInView extends HookWidget {
         useProvider(authStateControllerProvider.select((value) => value));
     // print('state : ${state}');
 
-    final mailController = TextEditingController(text: authState.email ?? '');
+    final mailController =
+        TextEditingController(text: authState.loginEmail ?? '');
     final passwordController =
-        TextEditingController(text: authState.password ?? '');
+        TextEditingController(text: authState.loginPassword ?? '');
 
     return Scaffold(
       appBar: AppBar(
@@ -102,7 +113,7 @@ class LogInView extends HookWidget {
                   decoration: InputDecoration(hintText: 'example@co.jp'),
                   controller: mailController,
                   onChanged: (text) {
-                    controller.setMailText(text);
+                    controller.setLoginEmailText(text);
                   },
                 ),
               ),
@@ -114,7 +125,7 @@ class LogInView extends HookWidget {
                   obscureText: true,
                   controller: passwordController,
                   onChanged: (text) {
-                    controller.setPasswordText(text);
+                    controller.setLoginPasswordText(text);
                   },
                 ),
               ),
@@ -126,7 +137,7 @@ class LogInView extends HookWidget {
                   onPressed: () async {
                     try {
                       await controller.login(
-                          authState.email, authState.password);
+                          authState.loginEmail, authState.loginPassword);
                       await dialog.show(context, 'ログインしました');
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => HomeView()));

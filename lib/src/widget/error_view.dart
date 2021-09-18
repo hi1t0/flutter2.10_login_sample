@@ -13,7 +13,7 @@ class ErrorView extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('error'),
+            Text('通信を確認し、アプリを起動し直してください'),
             ElevatedButton(
               child: Text('Root'),
               onPressed: () async {

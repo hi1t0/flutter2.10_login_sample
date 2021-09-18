@@ -7,12 +7,16 @@ part of 'login_view.dart';
 // **************************************************************************
 
 _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
-      password: json['password'] as String?,
-      email: json['email'] as String?,
+      loginPassword: json['loginPassword'] as String?,
+      loginEmail: json['loginEmail'] as String?,
+      signupPassword: json['signupPassword'] as String?,
+      signupEmail: json['signupEmail'] as String?,
     );
 
 Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
     <String, dynamic>{
-      'password': instance.password,
-      'email': instance.email,
+      'loginPassword': instance.loginPassword,
+      'loginEmail': instance.loginEmail,
+      'signupPassword': instance.signupPassword,
+      'signupEmail': instance.signupEmail,
     };

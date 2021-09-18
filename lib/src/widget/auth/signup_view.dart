@@ -16,9 +16,10 @@ class SignUpView extends HookWidget {
     final authState =
         useProvider(authStateControllerProvider.select((value) => value));
 
-    final mailController = TextEditingController(text: authState.email ?? '');
+    final mailController =
+        TextEditingController(text: authState.signupEmail ?? '');
     final passwordController =
-        TextEditingController(text: authState.password ?? '');
+        TextEditingController(text: authState.signupPassword ?? '');
 
     return Scaffold(
       appBar: AppBar(
@@ -29,10 +30,15 @@ class SignUpView extends HookWidget {
             // icon: const Icon(Icons.add),
             onPressed: () async {
               try {
-                await asp.signUp(authState.password, authState.email);
+                await asp.signUp(
+                    authState.signupPassword, authState.signupEmail);
                 await dialog.show(context, '登録完了しました');
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomeView()));
+                // Navigator.pushReplacement(context,
+                //     MaterialPageRoute(builder: (context) => HomeView()));
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeView()),
+                    (_) => false);
               } catch (e) {
                 dialog.show(context, e.toString());
               }
@@ -60,7 +66,7 @@ class SignUpView extends HookWidget {
                     decoration: InputDecoration(hintText: 'メールアドレスを入力してください'),
                     controller: mailController,
                     onChanged: (text) {
-                      asp.setMailText(text);
+                      asp.setSignupEmailText(text);
                     },
                   ),
                 ),
@@ -83,7 +89,7 @@ class SignUpView extends HookWidget {
                     obscureText: true,
                     controller: passwordController,
                     onChanged: (text) {
-                      asp.setPasswordText(text);
+                      asp.setSignupPasswordText(text);
                     },
                   ),
                 ),
