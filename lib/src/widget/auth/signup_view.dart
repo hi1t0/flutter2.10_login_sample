@@ -8,6 +8,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class SignUpView extends HookWidget {
   static const routeName = '/signup';
 
+  final mailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   final dialog = MyDialog();
 
   @override
@@ -15,11 +18,6 @@ class SignUpView extends HookWidget {
     final asp = useProvider(authStateControllerProvider.notifier);
     final authState =
         useProvider(authStateControllerProvider.select((value) => value));
-
-    final mailController =
-        TextEditingController(text: authState.signupEmail ?? '');
-    final passwordController =
-        TextEditingController(text: authState.signupPassword ?? '');
 
     return Scaffold(
       appBar: AppBar(

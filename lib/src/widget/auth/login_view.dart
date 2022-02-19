@@ -77,6 +77,9 @@ class AuthStateController extends StateNotifier<AuthState> {
 class LogInView extends HookWidget {
   static const routeName = '/login';
 
+  late TextEditingController mailController;
+  late TextEditingController passwordController;
+
   final dialog = MyDialog();
 
   @override
@@ -86,10 +89,14 @@ class LogInView extends HookWidget {
         useProvider(authStateControllerProvider.select((value) => value));
     // print('state : ${state}');
 
-    final mailController =
-        TextEditingController(text: authState.loginEmail ?? '');
-    final passwordController =
-        TextEditingController(text: authState.loginPassword ?? '');
+    useEffect(() {
+      // 初期値代入
+      mailController = TextEditingController(text: authState.loginEmail ?? '');
+      passwordController =
+          TextEditingController(text: authState.loginPassword ?? '');
+
+      return () {};
+    }, []);
 
     return Scaffold(
       appBar: AppBar(
