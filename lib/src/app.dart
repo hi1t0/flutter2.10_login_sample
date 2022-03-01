@@ -2,15 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_login_sample/src/widget/auth/login_view.dart';
-import 'package:flutter_login_sample/src/widget/auth/signup_view.dart';
-import 'package:flutter_login_sample/src/widget/error_view.dart';
-import 'package:flutter_login_sample/src/widget/home_view.dart';
+import 'package:flutter_login_sample_20220219/src/widget/error.dart';
 
 import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
+import 'settings/my_theme.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+import 'widget/view/home_view.dart';
+import 'widget/view/login_view.dart';
+import 'widget/view/signup_view.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, snapshot) {
           // 取得が完了していないときに表示するWidget
           if (snapshot.connectionState != ConnectionState.done) {
-            // インジケーターを回しておきます
+            // インジケーター
             return const CircularProgressIndicator();
           }
 
@@ -82,7 +83,8 @@ class MyApp extends StatelessWidget {
                 // Define a light and dark color theme. Then, read the user's
                 // preferred ThemeMode (light, dark, or system default) from the
                 // SettingsController to display the correct theme.
-                theme: ThemeData(),
+                theme: MyTheme.data,
+                // theme: ThemeData(),
                 darkTheme: ThemeData.dark(),
                 themeMode: settingsController.themeMode,
 

@@ -27,7 +27,9 @@ class Logger extends ProviderObserver {
   @override
   void didUpdateProvider(
     ProviderBase provider,
+    Object? previousValue,
     Object? newValue,
+    ProviderContainer container,
   ) {
     print('''
       {
